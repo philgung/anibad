@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Seance.dart';
+
 class Accueil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,23 +29,27 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Center(child: buildListView(entries, colorCodes)),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      body: Center(child: buildListView(context, entries, colorCodes)),
+      floatingActionButton:
+          FloatingActionButton(tooltip: 'Increment', child: Icon(Icons.add)),
     );
   }
 
-  ListView buildListView(List<String> entries, List<int> colorCodes) {
+  ListView buildListView(
+      BuildContext context, List<String> entries, List<int> colorCodes) {
     return ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: entries.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 50,
-            color: Colors.amber[colorCodes[index]],
-            child: Center(child: Text('Séance ${entries[index]}')),
+        itemBuilder: (_, int index) {
+          return ListTile(
+            title: Text('Séance ${entries[index]}'),
+            subtitle: Text('Subtitle'),
+            leading: Icon(Icons.thumb_up),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Seance(index + 1)));
+            },
           );
         });
   }
