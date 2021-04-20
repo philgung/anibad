@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'LogoChrono.dart';
 
 class Seance extends StatelessWidget {
   final int index;
@@ -10,7 +11,7 @@ class Seance extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: Text('Anibad')),
         body: ListView(
-          children: const <Widget>[
+          children: <Widget>[
             Card(
                 child: ListTile(
                     leading: FlutterLogo(),
@@ -34,14 +35,15 @@ class Seance extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                leading: Icon(Icons.timer),
-                title: Text('5 min footing autour du plateau'),
+                leading: LogoChrono(5),
+                title: Text('footing autour du plateau'),
                 subtitle: Text('(commentaire : réduit à 2/3 tours)'),
                 trailing: Icon(Icons.more_vert),
               ),
             ),
             Card(
               child: ListTile(
+                leading: LogoChrono(5),
                 title: Text('Déverrouillage articulaire'),
                 trailing: Icon(Icons.more_vert),
               ),
@@ -54,6 +56,7 @@ class Seance extends StatelessWidget {
             ),
             Card(
               child: ListTile(
+                leading: LogoChrono(15),
                 title: Text(
                     'Routine Avant-Arriere (demi terrain) Court/Court/Long'),
                 trailing: Icon(Icons.more_vert),
@@ -61,6 +64,7 @@ class Seance extends StatelessWidget {
             ),
             Card(
               child: ListTile(
+                leading: LogoChrono(20),
                 title: Text('Match Suédois'),
                 trailing: Icon(Icons.more_vert),
               ),
