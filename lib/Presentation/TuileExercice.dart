@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'LogoChrono.dart';
+import 'AccueilPage.dart';
 
 class TuileExercice extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final int duree;
+  final Exercice exercice;
   const TuileExercice(
-    this.title,
-    this.subtitle,
-    this.duree, {
+    this.exercice, {
     Key key,
   }) : super(key: key);
 
@@ -16,9 +13,9 @@ class TuileExercice extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: LogoChrono(duree),
-        title: Text(title),
-        subtitle: Text(subtitle),
+        leading: LogoChrono(exercice.duree),
+        title: Text(exercice.title),
+        subtitle: Text(exercice.subtitle),
         trailing: Icon(Icons.more_vert),
       ),
     );

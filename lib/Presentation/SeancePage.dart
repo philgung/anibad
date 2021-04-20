@@ -1,41 +1,40 @@
+import 'package:anibad/Presentation/AccueilPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'TuilePhase.dart';
 import 'TuileExercice.dart';
 
 class SeancePage extends StatelessWidget {
-  final int index;
-  SeancePage(this.index);
+  final Seance seance;
+  SeancePage(this.seance);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Anibad')),
+        appBar: AppBar(title: Text('Anibad - ${seance.nom}')),
         body: ListView(
           children: <Widget>[
             Card(
                 child: ListTile(
                     leading: FlutterLogo(),
-                    title: Text('Thème : Déplacement Avant-Arrière'))),
+                    title: Text('Thème : ${seance.theme}'))),
             Card(
               child: ListTile(
                 title: Text(
-                  'Objectifs : Position du pied sur le déplacement',
+                  'Objectifs : ${seance.objectifs}',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
             TuilePhase('Echauffement'),
-            TuileExercice('footing autour du plateau',
-                '(commentaire : réduit à 2/3 tours)', 5),
-            TuileExercice('Déverrouillage articulaire', '', 5),
-            TuileExercice('Volants brulants', '', 10),
+            TuileExercice(seance.echauffement[0]),
+            TuileExercice(seance.echauffement[1]),
+            TuileExercice(seance.echauffement[2]),
             TuilePhase('Corps'),
-            TuileExercice(
-                'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
-            TuileExercice('Match Suédois', '', 20),
+            TuileExercice(seance.corps[0]),
+            TuileExercice(seance.corps[1]),
             TuilePhase('Retour au calme'),
-            TuileExercice('Etirement au sol', '', 5),
+            TuileExercice(seance.retourAuCalme[0]),
           ],
         ));
   }
