@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'LogoChrono.dart';
+import 'TuilePhase.dart';
+import 'TuileExercice.dart';
 
 class Seance extends StatelessWidget {
   final int index;
@@ -24,51 +25,16 @@ class Seance extends StatelessWidget {
                 ),
               ),
             ),
-            Card(
-              child: ListTile(
-                title: Text(
-                  'Echauffement',
-                  style: TextStyle(color: Colors.blue),
-                ),
-                dense: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: LogoChrono(5),
-                title: Text('footing autour du plateau'),
-                subtitle: Text('(commentaire : réduit à 2/3 tours)'),
-                trailing: Icon(Icons.more_vert),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: LogoChrono(5),
-                title: Text('Déverrouillage articulaire'),
-                trailing: Icon(Icons.more_vert),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                title: Text('Corps', style: TextStyle(color: Colors.blue)),
-                dense: true,
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: LogoChrono(15),
-                title: Text(
-                    'Routine Avant-Arriere (demi terrain) Court/Court/Long'),
-                trailing: Icon(Icons.more_vert),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: LogoChrono(20),
-                title: Text('Match Suédois'),
-                trailing: Icon(Icons.more_vert),
-              ),
-            ),
+            TuilePhase('Echauffement'),
+            TuileExercice('footing autour du plateau',
+                '(commentaire : réduit à 2/3 tours)', 5),
+            TuileExercice('Déverrouillage articulaire', '', 5),
+            TuilePhase('Corps'),
+            TuileExercice(
+                'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
+            TuileExercice('Match Suédois', '', 20),
+            TuilePhase('Retour au calme'),
+            TuileExercice('Etirement au sol', '', 5),
           ],
         ));
   }
