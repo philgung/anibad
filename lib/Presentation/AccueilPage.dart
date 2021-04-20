@@ -1,6 +1,7 @@
+import 'package:anibad/Domain/Exercice.dart';
+import 'package:anibad/Domain/Seance.dart';
 import 'package:flutter/material.dart';
-
-import 'SeancePage.dart';
+import 'Composants/TuileSeance.dart';
 
 class AccueilPage extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class AccueilPage extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'AniBad'),
+      home: MyHomePage(title: 'AniBad - Saison 2020/21'),
     );
   }
 }
@@ -23,12 +24,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Seance> entries = <Seance>[
-      new Seance('Séance 1', 'Déplacement Avant-Arrière',
-          'Mardi 17 septembre 2020', 'Position du pied sur le déplacement'),
-      new Seance('Séance 2', 'Déplacement Avant-Arrière',
-          'Mardi 24 septembre 2020', 'Position du pied sur le déplacement'),
-      new Seance('Séance 3', 'Déplacement Avant-Arrière',
-          'Mardi 1 octobre 2020', 'Position du pied sur le déplacement'),
+      creerSeance1(),
+      creerSeance2(),
+      creerSeance3()
     ];
 
     return Scaffold(
@@ -41,54 +39,72 @@ class MyHomePage extends StatelessWidget {
     );
   }
 
+  Seance creerSeance3() {
+    var seance = new Seance('Séance 3', 'Déplacement Avant-Arrière', '1er oct',
+        'Position du pied sur le déplacement', false);
+    seance.echauffement = [
+      new Exercice(
+          'footing autour du plateau', '(commentaire : réduit à 2/3 tours)', 5),
+      new Exercice('Déverrouillage articulaire', '', 2),
+      new Exercice('Volants brulants', '', 10),
+    ];
+    seance.corps = [
+      new Exercice(
+          'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
+      new Exercice('Match Suédois', '', 20),
+    ];
+    seance.retourAuCalme = [
+      new Exercice('Etirement au sol', '', 5),
+    ];
+    return seance;
+  }
+
+  Seance creerSeance2() {
+    var seance = new Seance('Séance 2', 'Déplacement Avant-Arrière', '24 sept',
+        'Position du pied sur le déplacement', true);
+    seance.echauffement = [
+      new Exercice(
+          'footing autour du plateau', '(commentaire : réduit à 2/3 tours)', 5),
+      new Exercice('Déverrouillage articulaire', '', 2),
+      new Exercice('Volants brulants', '', 10),
+    ];
+    seance.corps = [
+      new Exercice(
+          'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
+      new Exercice('Match Suédois', '', 20),
+    ];
+    seance.retourAuCalme = [
+      new Exercice('Etirement au sol', '', 5),
+    ];
+    return seance;
+  }
+
+  Seance creerSeance1() {
+    var seance = new Seance('Séance 1', 'Déplacement Avant-Arrière', '17 sept',
+        'Position du pied sur le déplacement', true);
+    seance.echauffement = [
+      new Exercice(
+          'footing autour du plateau', '(commentaire : réduit à 2/3 tours)', 5),
+      new Exercice('Déverrouillage articulaire', '', 2),
+      new Exercice('Volants brulants', '', 10),
+    ];
+    seance.corps = [
+      new Exercice(
+          'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
+      new Exercice('Match Suédois', '', 20),
+    ];
+    seance.retourAuCalme = [
+      new Exercice('Etirement au sol', '', 5),
+    ];
+    return seance;
+  }
+
   ListView buildListView(BuildContext context, List<Seance> entries) {
     return ListView.builder(
         padding: const EdgeInsets.all(8),
         itemCount: entries.length,
         itemBuilder: (_, int index) {
-          return ListTile(
-            title: Text(entries[index].nom),
-            subtitle: Text(entries[index].theme + '\n' + entries[index].date),
-            leading: Icon(Icons.directions_run),
-            trailing: Icon(Icons.arrow_forward),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SeancePage(entries[index])));
-            },
-          );
+          return TuileSeance(seance: entries[index]);
         });
   }
-}
-
-class Seance {
-  String nom, theme, date, objectifs;
-  List<Exercice> echauffement;
-  List<Exercice> corps;
-  List<Exercice> retourAuCalme;
-
-  Seance(this.nom, this.theme, this.date, this.objectifs) {
-    echauffement = [
-      new Exercice(
-          'footing autour du plateau', '(commentaire : réduit à 2/3 tours)', 5),
-      new Exercice('Déverrouillage articulaire', '', 5),
-      new Exercice('Volants brulants', '', 10),
-    ];
-    corps = [
-      new Exercice(
-          'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
-      new Exercice('Match Suédois', '', 20),
-    ];
-    retourAuCalme = [
-      new Exercice('Etirement au sol', '', 5),
-    ];
-  }
-}
-
-class Exercice {
-  String title, subtitle;
-  int duree;
-
-  Exercice(this.title, this.subtitle, this.duree);
 }

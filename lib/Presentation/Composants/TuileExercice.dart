@@ -1,6 +1,6 @@
+import 'package:anibad/Domain/Exercice.dart';
 import 'package:flutter/material.dart';
 import 'LogoChrono.dart';
-import 'AccueilPage.dart';
 
 class TuileExercice extends StatelessWidget {
   final Exercice exercice;

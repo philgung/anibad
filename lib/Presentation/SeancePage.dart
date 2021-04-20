@@ -1,8 +1,8 @@
-import 'package:anibad/Presentation/AccueilPage.dart';
+import 'package:anibad/Domain/Seance.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'TuilePhase.dart';
-import 'TuileExercice.dart';
+import 'Composants/TuilePhase.dart';
+import 'Composants/TuileExercice.dart';
 
 class SeancePage extends StatelessWidget {
   final Seance seance;
