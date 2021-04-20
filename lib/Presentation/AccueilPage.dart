@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Seance.dart';
+import 'SeancePage.dart';
 
-class Accueil extends StatelessWidget {
+class AccueilPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,8 +47,10 @@ class MyHomePage extends StatelessWidget {
             leading: Icon(Icons.thumb_up),
             trailing: Icon(Icons.arrow_forward),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Seance(index + 1)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SeancePage(index + 1)));
             },
           );
         });

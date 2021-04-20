@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'TuilePhase.dart';
 import 'TuileExercice.dart';
 
-class Seance extends StatelessWidget {
+class SeancePage extends StatelessWidget {
   final int index;
-  Seance(this.index);
+  SeancePage(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +29,7 @@ class Seance extends StatelessWidget {
             TuileExercice('footing autour du plateau',
                 '(commentaire : réduit à 2/3 tours)', 5),
             TuileExercice('Déverrouillage articulaire', '', 5),
+            TuileExercice('Volants brulants', '', 10),
             TuilePhase('Corps'),
             TuileExercice(
                 'Routine Avant-Arriere (demi terrain)', 'Court/Court/Long', 15),
