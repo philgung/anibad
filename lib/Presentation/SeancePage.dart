@@ -15,14 +15,20 @@ class SeancePage extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             Card(
-                child: ListTile(
-                    leading: FlutterLogo(),
-                    title: Text('Thème : ${seance.theme}'))),
-            Card(
+                child: Container(
+              decoration: BoxDecoration(color: Colors.blue[100]),
               child: ListTile(
-                title: Text(
-                  'Objectifs : ${seance.objectifs}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  leading: FlutterLogo(),
+                  title: Text('Thème : ${seance.theme}')),
+            )),
+            Card(
+              child: Container(
+                decoration: BoxDecoration(color: Colors.blue[50]),
+                child: ListTile(
+                  title: Text(
+                    'Objectifs : ${seance.objectifs}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),

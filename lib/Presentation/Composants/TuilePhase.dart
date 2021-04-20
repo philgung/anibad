@@ -11,12 +11,15 @@ class TuilePhase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        title: Text(
-          nom,
-          style: TextStyle(color: Colors.blue),
+      child: Container(
+        decoration: BoxDecoration(color: Colors.grey[200]),
+        child: ListTile(
+          title: Text(
+            nom,
+            style: TextStyle(color: Colors.blue),
+          ),
+          dense: true,
         ),
-        dense: true,
       ),
     );
   }
