@@ -32,9 +32,8 @@ class SeanceRepositoryInMemoryImpl implements SeanceRepository {
     var seance = new Seance('Séance 2', 'Déplacement Avant-Arrière', '24 sept',
         'Position du pied sur le déplacement', true);
     seance.echauffement = [
-      new Exercice(
-          'footing autour du plateau', '(commentaire : réduit à 2/3 tours)', 5),
       new Exercice('Déverrouillage articulaire', '', 2),
+      new Exercice('Tipping', '- croix\n-avant/arrière', 5),
       new Exercice('Volants brulants', '', 10),
     ];
     seance.corps = [
