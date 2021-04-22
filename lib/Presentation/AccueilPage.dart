@@ -2,6 +2,7 @@ import 'package:anibad/Domain/Seance.dart';
 import 'package:anibad/Infrastructure/Repository/SeanceRepositoryInMemoryImpl.dart';
 import 'package:flutter/material.dart';
 import 'Composants/TuileSeance.dart';
+import 'RecherchePage.dart';
 
 class AccueilPage extends StatelessWidget {
   @override
@@ -27,13 +28,17 @@ class MyHomePage extends StatelessWidget {
         SeanceRepositoryInMemoryImpl().recupererSeances();
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(child: buildListView(context, seances)),
-      floatingActionButton:
-          FloatingActionButton(tooltip: 'Increment', child: Icon(Icons.add)),
-    );
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Center(child: buildListView(context, seances)),
+        floatingActionButton:
+            // ignore: missing_required_param
+            FloatingActionButton(
+                tooltip: 'Increment',
+                child: Icon(Icons.add),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RecherchePage()))));
   }
 
   ListView buildListView(BuildContext context, List<Seance> entries) {
