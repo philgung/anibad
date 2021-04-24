@@ -1,6 +1,5 @@
 import 'package:anibad/Domain/Exercice.dart';
-import 'package:anibad/Domain/Repository/ExerciceRepository.dart';
-import 'package:anibad/Infrastructure/Repository/ExerciceRepositoryInMemoryImpl.dart';
+import 'package:anibad/Infrastructure/Repository/ExerciceRepositoryJsonImpl.dart';
 import 'package:anibad/Presentation/Composants/TuileExercice.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +13,25 @@ class _RecherchePageState extends State<RecherchePage> {
   TextEditingController editingController = TextEditingController();
   List<Exercice> elementsRecherches;
   _RecherchePageState() {
-    initList = ExerciceRepositoryInMemoryImpl().recupererExercices();
     elementsRecherches = List<Exercice>();
-    elementsRecherches.addAll(initList);
+    initList = List<Exercice>();
   }
+
+  @override
+  void initState() {
+    super.initState();
+    listenForInitExercices();
+  }
+
+  void listenForInitExercices() async {
+    var stream = await ExerciceRepositoryJsonImpl('assets/exercices.json')
+        .getExercices();
+    stream.listen((exercice) => setState(() {
+          initList.add(exercice);
+          elementsRecherches.add(exercice);
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

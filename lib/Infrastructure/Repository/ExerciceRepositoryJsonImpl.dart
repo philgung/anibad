@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:async' show Future;
+import 'dart:io';
 import 'package:anibad/Domain/Exercice.dart';
 import 'package:anibad/Domain/Repository/ExerciceRepository.dart';
 import 'package:flutter/services.dart';
@@ -10,26 +10,45 @@ class ExerciceRepositoryJsonImpl implements ExerciceRepository {
 
   @override
   List<Exercice> recupererExercices() {
-    String jsonString;
-    // final String jsonString = litJson();
-
+    String jsonString = litFichier();
     final exercicesMap = jsonDecode(jsonString).cast<Map<String, dynamic>>();
     var dtos = exercicesMap
         .map<ExerciceJsonDto>((json) => ExerciceJsonDto.fromJson(json))
         .toList();
     var exercices = List<Exercice>();
     for (var dto in dtos) {
-      var exercice = Exercice(dto.title, dto.subtitle, dto.duree);
-      exercice.consignes = dto.consignes;
-      exercices.add(exercice);
+      exercices.add(mapExercice(dto));
     }
     return exercices;
   }
 
-  Future<String> litJson() async {
-    final String response =
-        await rootBundle.loadString('assets/exercices.json');
-    return response;
+  Future<Stream<Exercice>> getExercices() async {
+    return new Stream.fromFuture(rootBundle.loadString(fichierJson))
+        .transform(json.decoder)
+        .expand((jsonBody) => (jsonBody as Map)['exercices'])
+        .map<Exercice>((json) {
+      var dto = ExerciceJsonDto.fromJson(json);
+      return mapExercice(dto);
+    });
+  }
+
+  // void listenForInitExercices() async {
+  //   var stream = await ExerciceRepositoryJsonImpl('assets/exercices.json')
+  //       .getExercices();
+  //   stream.listen((exercice) => setState(() {
+  //         initList.add(exercice);
+  //         elementsRecherches.add(exercice);
+  //       }));
+  // }
+
+  Exercice mapExercice(ExerciceJsonDto dto) {
+    var exercice = Exercice(dto.title, dto.subtitle, dto.duree);
+    exercice.consignes = dto.consignes;
+    return exercice;
+  }
+
+  String litFichier() {
+    return File(fichierJson).readAsStringSync();
   }
 }
 
