@@ -1,3 +1,7 @@
+import 'package:anibad/Domain/Exercice.dart';
+import 'package:anibad/Domain/Repository/ExerciceRepository.dart';
+import 'package:anibad/Infrastructure/Repository/ExerciceRepositoryInMemoryImpl.dart';
+import 'package:anibad/Presentation/Composants/TuileExercice.dart';
 import 'package:flutter/material.dart';
 
 class RecherchePage extends StatefulWidget {
@@ -6,19 +10,12 @@ class RecherchePage extends StatefulWidget {
 }
 
 class _RecherchePageState extends State<RecherchePage> {
-  final initList = [
-    'Echelle 1',
-    'Echelle 2',
-    'Echelle 3',
-    'Volants Brulants',
-    'Corde à sauter',
-    'Tipping',
-    'Double Suédois'
-  ];
-
+  List<Exercice> initList;
   TextEditingController editingController = TextEditingController();
-  var elementsRecherches = List<String>();
+  List<Exercice> elementsRecherches;
   _RecherchePageState() {
+    initList = ExerciceRepositoryInMemoryImpl().recupererExercices();
+    elementsRecherches = List<Exercice>();
     elementsRecherches.addAll(initList);
   }
   @override
@@ -42,7 +39,7 @@ class _RecherchePageState extends State<RecherchePage> {
           Expanded(
               child: ListView.builder(
             itemBuilder: (context, index) {
-              return ListTile(title: Text('${elementsRecherches[index]}'));
+              return TuileExercice(elementsRecherches[index]);
             },
             itemCount: elementsRecherches.length,
           ))
@@ -50,12 +47,12 @@ class _RecherchePageState extends State<RecherchePage> {
   }
 
   filterSearch(String query) {
-    var searchList = List<String>();
+    var searchList = List<Exercice>();
     searchList.addAll(initList);
     if (query.isNotEmpty) {
-      var resultListData = List<String>();
+      var resultListData = List<Exercice>();
       searchList.forEach((element) {
-        if (element.contains(query)) {
+        if (element.title.contains(query) || element.subtitle.contains(query)) {
           resultListData.add(element);
         }
       });

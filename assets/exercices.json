@@ -1,0 +1,16 @@
+{
+    "exercices":[
+        { "title":"Echelle 1", "subtitle":"1 appui dans chaque espace - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 2", "subtitle":"1 appui dans chaque espace - Pied avant dans l'axe","duree":5,"consignes":""},
+        { "title":"Echelle 3", "subtitle":"Appuis écartés-serrés-écartés - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 4", "subtitle":"Appuis ext-int-ext - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 5", "subtitle":"2 appuis au même niveau - 1 dans l'échelle, 1 en dehors - Montée de genou  pour le pied extérieur - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 6", "subtitle":"2 appuis au même niveau - 1 dans l'échelle, 1 en dehors - Talon-fesse pour le pied extérieur - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 7", "subtitle":"Un pied chasse l'autre - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 8", "subtitle":"Dedans 1 pied, dehors 2 pieds - Garder la raquette devant soi","duree":5,"consignes":""},
+        { "title":"Echelle 9", "subtitle":"Frappe main haute - Rotation simultanée","duree":5,"consignes":""},
+        { "title":"Corde à sauter", "subtitle":"","duree":5,"consignes":""},
+        { "title":"Tipping", "subtitle":"","duree":5,"consignes":""},
+        { "title":"Double Suédois", "subtitle":"","duree":5,"consignes":""}
+    ]
+}
