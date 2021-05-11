@@ -32,15 +32,6 @@ class ExerciceRepositoryJsonImpl implements ExerciceRepository {
     });
   }
 
-  // void listenForInitExercices() async {
-  //   var stream = await ExerciceRepositoryJsonImpl('assets/exercices.json')
-  //       .getExercices();
-  //   stream.listen((exercice) => setState(() {
-  //         initList.add(exercice);
-  //         elementsRecherches.add(exercice);
-  //       }));
-  // }
-
   Exercice mapExercice(ExerciceJsonDto dto) {
     var exercice = Exercice(dto.title, dto.subtitle, dto.duree);
     exercice.consignes = dto.consignes;
