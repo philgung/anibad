@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:anibad/Domain/Exercice.dart';
 import 'package:anibad/Domain/Repository/ExerciceRepository.dart';
 import 'package:flutter/services.dart';
@@ -9,20 +8,7 @@ class ExerciceRepositoryJsonImpl implements ExerciceRepository {
   ExerciceRepositoryJsonImpl(this.fichierJson);
 
   @override
-  List<Exercice> recupererExercices() {
-    String jsonString = litFichier();
-    final exercicesMap = jsonDecode(jsonString).cast<Map<String, dynamic>>();
-    var dtos = exercicesMap
-        .map<ExerciceJsonDto>((json) => ExerciceJsonDto.fromJson(json))
-        .toList();
-    var exercices = List<Exercice>();
-    for (var dto in dtos) {
-      exercices.add(mapExercice(dto));
-    }
-    return exercices;
-  }
-
-  Future<Stream<Exercice>> getExercices() async {
+  Future<Stream<Exercice>> recupererExercices() async {
     return new Stream.fromFuture(rootBundle.loadString(fichierJson))
         .transform(json.decoder)
         .expand((jsonBody) => (jsonBody as Map)['exercices'])
@@ -36,10 +22,6 @@ class ExerciceRepositoryJsonImpl implements ExerciceRepository {
     var exercice = Exercice(dto.title, dto.subtitle, dto.duree);
     exercice.consignes = dto.consignes;
     return exercice;
-  }
-
-  String litFichier() {
-    return File(fichierJson).readAsStringSync();
   }
 }
 

@@ -1,5 +1,5 @@
 import '../Exercice.dart';
 
 abstract class ExerciceRepository {
-  List<Exercice> recupererExercices();
+  Future<Stream<Exercice>> recupererExercices();
 }
