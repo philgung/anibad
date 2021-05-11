@@ -12,16 +12,7 @@ class ExerciceRepositoryJsonImpl implements ExerciceRepository {
     return new Stream.fromFuture(rootBundle.loadString(fichierJson))
         .transform(json.decoder)
         .expand((jsonBody) => (jsonBody as Map)['exercices'])
-        .map<Exercice>((json) {
-      var dto = ExerciceJsonDto.fromJson(json);
-      return mapExercice(dto);
-    });
-  }
-
-  Exercice mapExercice(ExerciceJsonDto dto) {
-    var exercice = Exercice(dto.title, dto.subtitle, dto.duree);
-    exercice.consignes = dto.consignes;
-    return exercice;
+        .map<Exercice>((json) => ExerciceJsonDto.fromJson(json).toExercice());
   }
 }
 
@@ -41,4 +32,10 @@ class ExerciceJsonDto {
         'consignes': consignes,
         'duree': duree
       };
+
+  Exercice toExercice() {
+    var exercice = Exercice(title, subtitle, duree);
+    exercice.consignes = consignes;
+    return exercice;
+  }
 }
