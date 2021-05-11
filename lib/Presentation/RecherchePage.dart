@@ -26,10 +26,13 @@ class _RecherchePageState extends State<RecherchePage> {
   void listenForInitExercices() async {
     var stream = await ExerciceRepositoryJsonImpl('assets/exercices.json')
         .recupererExercices();
-    stream.listen((exercice) => setState(() {
-          initList.add(exercice);
-          elementsRecherches.add(exercice);
-        }));
+    stream
+        .listen((exercice) => setState(() {
+              initList.add(exercice);
+            }))
+        .onDone(() {
+      elementsRecherches.addAll(initList);
+    });
   }
 
   @override
