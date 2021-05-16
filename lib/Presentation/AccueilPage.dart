@@ -2,6 +2,7 @@ import 'package:anibad/Domain/Seance.dart';
 import 'package:anibad/Infrastructure/Repository/SeanceRepositoryInMemoryImpl.dart';
 import 'package:flutter/material.dart';
 import 'Composants/TuileSeance.dart';
+import 'EditerSeancePage.dart';
 import 'RecherchePage.dart';
 
 class AccueilPage extends StatelessWidget {
@@ -13,7 +14,12 @@ class AccueilPage extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'AniBad - Saison 2020/21'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(title: 'AniBad - Saison 2020/21'),
+        'recherche': (context) => RecherchePage(),
+        EditerSeancePage.routeName: (context) => EditerSeancePage()
+      },
     );
   }
 }
@@ -32,13 +38,10 @@ class MyHomePage extends StatelessWidget {
           title: Text(title),
         ),
         body: Center(child: buildListView(context, seances)),
-        floatingActionButton:
-            // ignore: missing_required_param
-            FloatingActionButton(
-                tooltip: 'Increment',
-                child: Icon(Icons.add),
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RecherchePage()))));
+        floatingActionButton: FloatingActionButton(
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+            onPressed: () => Navigator.pushNamed(context, 'recherche')));
   }
 
   ListView buildListView(BuildContext context, List<Seance> entries) {

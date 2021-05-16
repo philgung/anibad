@@ -4,6 +4,7 @@ import 'package:anibad/Presentation/Composants/TuileExercice.dart';
 import 'package:flutter/material.dart';
 
 class RecherchePage extends StatefulWidget {
+  static const routeName = '/recherche';
   @override
   _RecherchePageState createState() => _RecherchePageState();
 }
